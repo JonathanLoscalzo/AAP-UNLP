@@ -1,0 +1,155 @@
+Respuestas
+
+train-test
+
+- underfit, ok, overfit (ver gráficos)
+
+
+Dada una red para clasificar entre 2 especies de animales:, ¿Qué tipo de función
+de activación final y de error deben utilizarse?
+
+A) Activación: ReLu, Error: Error cuadrático promedio (mse)
+B) Activación: ReLu, Error: Entropía Cruzada
+C) Activación: Softmax, Error: Error cuadrático promedio (mse)
+D) Activación: Softmax, Error: Entropía Cruzada => ESTA
+E) Activación: Ninguna, Error: Error cuadrático promedio (mse)
+F) Activación: Ninguna, Error: Entropía Cruzada
+D) Activación: TanH, Error: Error cuadrático promedio (mse)
+E) Activación: TanH, Error: Entropía Cruzada
+
+Utilizar una neurona por cada clase a clasificar, y necesito la probabilidad por eso uso softmax
+Podríamos usar uno, pero usar sigmoid.
+MSE no sirve para clasificación, la entropia cruzada se usa cuando tenemos que clasificar .
+ENTROPIA: minimizar distribución de probabilidades.
+
+La función de error hace que se mueva el algoritmo de gradiente.
+VER COMO SE CALCULAN LOS VALORES DE LAS FORMULAS.
+
+======================
+
+Dada una red para predecir la velocidad a la que debe moverse un motor (en
+mtr/s), ¿Qué tipo de función de activación final y de error deben utilizarse?
+
+A) Activación: ReLu, Error: Error cuadrático promedio (mse) => esta
+B) Activación: ReLu, Error: Entropía Cruzada
+C) Activación: Softmax, Error: Error cuadrático promedio (mse) 
+D) Activación: Softmax, Error: Entropía Cruzada
+E) Activación: Ninguna, Error: Error cuadrático promedio (mse) => esta
+F) Activación: Ninguna, Error: Entropía Cruzada
+D) Activación: TanH, Error: Error cuadrático promedio (mse) => esta
+E) Activación: TanH, Error: Entropía Cruzada
+
+Necesito que mi salida tenga un número real (puede ser negativo o positivo)
+TANH => me va a dar velocidades entre -1 y 1 (pero no un valor real)
+
+Si quiero un valor REAL Activacion: NONE y MSE.
+
+Si quiero que tenga solo valores positivo, podriá usar RELU.
+
+VER COMO SE CALCULA MSE
+=============
+• Dada una imagen con dimensiones 8x8, si aplico un filtro convolucional de tamaño
+3x3 sin padding, ¿cuáles son las dimensiones espaciales de la imagen de salida?
+STRIDE = 1,
+
+8 - 3 + 1 = 6 => 6 x 6 
+
+Si usara padding 10 * 10 => 10 - 3 + 1 => 8 x 8.
+
+
+VER COMO SE CALCULAN ESTAS CUENTAS. (para no tener que pensar)
+=============
+• Dada una imagen RGB con dimensiones 8x8x3, si aplico un filtro convolucional de
+tamaño 3x3 con zero-padding, ¿cuáles son las dimensiones espaciales de la imagen
+de salida?
+
+Lo transforma porque un kernel de 3x3 siempre va a tener 3x3x3
+Depende la imagen original cuando es convolución. 
+
+Por ende la salida va a ser
+10 - 3 + 1 => 8 => 8x8x1 . Si tuviera N feature-maps me va a retornar Nx8x8x1 filtros
+=============
+
+• Dada una capa convolucional con 5 filtros de 3x3, que recibe como entrada una
+imagen RGB de 8x8x3, ¿qué cantidad de parámetros a entrenar tendrá la capa?
+Sin padding =>
+LA red entrena los kernel => 
+Cantidad de parámetros: 
+5 x (3 x 3 x 3) => 45 + bias => 45 + 5 => 50.
+5 x (3 x 3 x 3 + 1 )
+
+feature map resultante
+ 6 x 6 x 5 => si no tiene padding y es stride = 1
+
+El bias es uno por cada filtro.
+
+=============
+
+Dada la salida de una red neuronal junto con lso valores esperado para un
+conjunto de datos, calcular la matriz de confusión y computar las métricas accuracy, precisión y recall.
+salida | valor esperado (real)
+1, 1    => ok
+1, 0    => NO
+0, 0    => ok
+1, 1    => ok
+1, 1    => ok
+0, 0,   => ok
+1, 0    => NO
+
+matriz confusión =>
+
+real
+0   2   2
+1   0   3
+    0   1 (pred)
+accuracy: 2 + 3 / 7  => 5/7
+precision:=> 3 / 2+3 => 3/5
+recall => 3 / 3 => 1
+
+f1: 2 * precision * recall / ( precision + recall )
+
+
+¿Cuál es el resultado de aplicar el kernel especificado a la siguiente imagen, sin
+utilizar padding y con un stride de 1?
+
+05 05 07 07 
+03 09 10 04
+03 00 00 03
+09 10 10 09 
+
+kernel:
+0.5 1 0.5
+001 3 001 
+0.5 1 0.5
+
+producto punto
+(1,1) = 2.5+5+3.5+3+27+10+1.5+0+0 = 52.5
+(1,2) = 2.5 + 7 + 3.5 + 9 + 30 + 4 +0 +0 +1.5 = 57.5
+(2,1) = 1.5 + 9+5 + 3 + 0 + 0 + 4.5 + 10 + 5 = 38
+(2,2) = 4.5 + 10 +  2 + 0 + 0 +3 + 5 +10 + 4.5 = 39
+
+
+kernel 
+-1 -1 -1 
+-1 8 -1
+-1 -1 -1
+
+(1,1) = 
+(1,2) = 
+(2,1) = 
+(2,2) = 
+
+========================================
+
+Polling
+
+Las capas Pooling ayudan a reducir la dimensionalidad espacial del feature map de una
+convolución. Básicamente son convoluciones con un stride igual al tamaño del kernel y
+donde se calcula alguna función sobre todos los píxeles. Lo más usual es calcular el
+máximo, el mínimo o el promedio.
+
+Si hubiera aplicado polling arriba, solo selecciono el "según función" dentro del kernel-size.
+
+
+===================================
+teoría general.

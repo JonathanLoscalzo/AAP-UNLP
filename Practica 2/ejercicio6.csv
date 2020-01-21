@@ -1,0 +1,8 @@
+archivos, accuracy, acc_epoca, loss, epocas, tasa, topologia
+2_clases_simple.csv,0.0,0.0,0.0,0.0,0.0,0.0
+6_clases_dificil.csv,0.9420000001589457,990.0,0.18006429795424145,1000.0,0.001,provista por cátedra
+circulos.csv,0.9966666674613953,861.0,0.09304235756397247,1000.0,0.001,provista por cátedra
+diabetes.csv,0.838,914.0,0.3634448219537735,1000.0,0.001,"(10-relu),(5-tanh)"
+iris.csv,0.9400000007947286,835.0,0.2650376315911611,1000.0,0.001,provista por cátedra
+moons_mis-scaled.csv,0.8825,793.0,0.28206640034914016,1000.0,0.001,provista por cátedra
+moons.csv,0.83,965.0,0.3978813076019287,1000.0,0.001,provista por cátedra
